@@ -5,30 +5,35 @@
 }
 .alert .success {
   color: yellow;
-} */
-/* .alert, .success {
+}
+.alert, .success {
+  color: yellow
+}
+.alert--.success {
   color: yellow
 } */
-/* .alert--.success {
-  color: yellow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .card {
+  border: 2px solid black;
+  width: 250px;
+  margin: 1em;
 } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -36,8 +41,17 @@
 /* .first.second { color: green}; */
 /* div > p { color: green; } */
 /* div .second, #first { color: green; } */
-/* p:first-child {color: black; }
-p:last-child { color: green; }  */
+/* p:last-child { color: green; } */
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -48,11 +62,17 @@ p:last-child { color: green; }  */
 
 
 /* Q3 */
-/* 
-p { color: grey; }
-#red { color: red; }
+ 
+nav p.blue {
+
+}
+
+/* existing code */
+/* #red { color: red; } */
 .blue { color: blue; }
-#red .blue { color: magenta; }
+/* #red .blue { color: magenta; } */
 .green p { color: lightgreen; }
+p { color: grey; }
 div.green p.blue { color: cyan; }
-*/
+
+

@@ -5,9 +5,15 @@ h1 {
   padding: .5em;
 }
 
-h2 {
+h2, h3 {
   color: rebeccapurple;
+  margin-bottom: 1em;
 }
+
+/* h3 {
+  color: rebeccapurple;
+  margin-bottom: 1em;
+} */
 
 p {
   font-size: 18px;
@@ -21,4 +27,38 @@ img {
 /* elements with class="about-section" */
 .about-section {
   background-color: #eee;
+}
+
+.about-section p {
+}
+
+header > p {
+
+}
+
+/* 
+also catch
+<header>
+  <div>
+    <p>
+
+*/
+header p {
+
+}
+
+img:hover {
+  max-height: 300px;
+}
+
+li:hover {
+  background-color: yellow;
+}
+
+ul li:nth-of-type(2n) {
+  background-color: cyan;
+}
+
+a:focus, a:hover {
+  font-size: 20px;
 }
