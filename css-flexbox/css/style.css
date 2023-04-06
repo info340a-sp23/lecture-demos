@@ -3,8 +3,19 @@ h1, h2, h3 {
     font-family: 'Helvetica';
 }
 
+h1 {
+    background-color: orange;
+    margin: 1em;
+}
+
 h2 {
     color: rebeccapurple;
+}
+
+header em {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
 }
 
 
@@ -14,24 +25,64 @@ nav {
     background-color: #4b2e83;
 }
 
+nav li {
+    display: inline-block;
+    width: 150px;
+    border: 2px solid lightblue;
+    /* padding: 0;
+    margin: 1em; */
+}
+
 nav a {
     color: white;
 }
-
 
 /* about section */
 .about-section {
     background-color: #f8f8f8;
 }
 
-
-/* course cards */
-.courses .card {
-    border: 1px solid black;
+/* in general, all images are small */
+img {
+    width: 100px;
 }
 
+/* style the first paragraph of every section special */
+/* section p:first-of-type {
+    background-color: blue;
+} */
+
+/* course cards */
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.courses .card {
+    border: 1px solid black;
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.courses .card.info340 {
+    /* flex-grow: 4; */
+    flex-basis: 500px;
+}
+
+.info201 {
+    /* flex-grow: 1; */
+}
+
+
 .courses img {
-    max-width: 150px;
+    width: 150px;
+}
+
+.rating {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* other */
