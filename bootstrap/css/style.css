@@ -1,0 +1,60 @@
+
+h1 {
+  background-color: rebeccapurple;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* h1 {
+  background-color: rebeccapurple;
+  color: white;
+} */
+
+/* descendant selector */
+/* section button {
+  font-size: 30px;
+}
+
+.card-deck {
+  display: flex;
+} */
+
+/* .card { */
+  /* shortcut: 1 property */
+  /* flex: 1 0 150px;  */
+
+  /* 3 properties */
+  /* flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 150px;
+} */
+
+/* attribute selector */
+/* input[checked="true"] { */
+  /* style checked boxes */
+/* } */
+
+
+/* @media (min-width: 768px) {
+  h1 {
+    background-color: gold;
+    color: rebeccapurple;
+  }
+
+  body {
+    background-color: lightgray;
+  }
+
+  .card-deck {
+    display: block;
+  }
+
+} */
