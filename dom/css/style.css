@@ -5,3 +5,13 @@
 .scale-out {
 	transform: scale(0); 
 }
+
+#face-pic {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	#face-pic {
+		display: block;
+	}
+}

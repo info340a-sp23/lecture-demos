@@ -53,9 +53,9 @@ const newLiElem = document.createElement('li');
 newLiElem.textContent = "Beatles - Eleanor Rigby";
 // console.log(newLiElem);
 
-const songListElem = document.querySelector('#dataSection ol');
-songListElem.appendChild(newLiElem);
 
+//takes in a data object
+//returns a <li>
 function renderSongListItem(aSongObj){
   const aElem = document.createElement('a');
   aElem.href = aSongObj.youtubeUrl;
@@ -68,6 +68,9 @@ function renderSongListItem(aSongObj){
 
 const result = renderSongListItem(songArray[0]);
 
+const songListElem = document.querySelector('#dataSection ol');
+songListElem.appendChild(newLiElem);
+
 function renderWholeSongList() {
   songListElem.innerHTML = ''; //replace all content with ""
 
@@ -76,6 +79,9 @@ function renderWholeSongList() {
     songListElem.appendChild(liElem);
   }  
 }
+
+//call it!
+renderWholeSongList();
 
 
 //interactivity
@@ -121,15 +127,74 @@ const addSongButton = document.querySelector('#formSection button');
 addSongButton.addEventListener('click', function(event){
   event.preventDefault();
 
+  //what did the user type in:
+  const artistInputElem = document.querySelector('#artistInput');
+  const userArtist = artistInputElem.value;
+  const titleInputElem = document.querySelector('#titleInput');
+  const userTitle = titleInputElem.value;
+
   //update the data
   //example
-  const exampleSong = {artist: 'Example', title: 'Example Title'}
-  songArray.push(exampleSong);
+  const newSong = {artist: userArtist, title: userTitle}
+  songArray.push(newSong);
 
   //re-render the list
   renderWholeSongList();
+  artistInputElem.value = '';
+  titleInputElem.value = '';
 
 });
+
+//when to use bracket vs dot notation
+
+//use brackets with arrays
+// songArray[0]
+// array[someIndex]
+
+//use dot notation with objects
+// myObj.property;
+// song.title;
+
+//one exception: brackets for variable key in objects
+const studentsObj = {
+  ada: 100,
+  bob: 87,
+  charles: 95,
+  davi: 97
+}
+//better approach
+const studentsArray = [
+  {name: 'ada', score: 100},
+
+]
+
+// const studentNamesArray = Object.keys(studentsObj);
+// console.log(studentNamesArray);
+
+// console.log(studentsObj);
+// console.log(studentsObj.ada);
+// console.log(studentsObj.bob);
+// const whichStudent = "charles";
+// console.log(studentsObj[whichStudent]);
+// for(const name of studentNamesArray){
+//   console.log("student", name, studentsObj[name]);
+// }
+
+const legoFace = document.querySelector("#face-pic");
+
+function changeFace(event){
+  //change the face
+  legoFace.src="img/surprised.png"
+}
+
+legoFace.addEventListener('mouseover', (event) =>{
+  //change the face
+  legoFace.src="img/surprised.png"
+})
+legoFace.addEventListener('mouseleave', (event) => {
+  //change the face
+  legoFace.src="img/happy.png"
+})
 
 
 
