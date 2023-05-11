@@ -7,7 +7,7 @@ import { ChatPane } from './ChatPane.js';
 function App(props) {
 
   const channelNames = ["general", "social", "random", "birds", "dank-memes"];
-  const currentChannel = "general";
+  const currentChannel = "random";
 
   return (
     <div className="container-fluid d-flex flex-column">

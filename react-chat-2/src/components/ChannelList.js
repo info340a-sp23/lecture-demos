@@ -5,13 +5,13 @@ export function ChannelList(props) {
   const {channelNames, currentChannel} = props;
 
   const liArray = channelNames.map((channelNameString) => {
-    let classList = "px-2";
+    let classListString = "px-2";
     if(channelNameString === currentChannel) { //on current channel
-      classList += " bg-warning";
+      classListString += " bg-warning";
     }
 
     return (
-      <li className={classList} key={channelNameString}>
+      <li className={classListString} key={channelNameString}>
         <a href={"/"+channelNameString}>{channelNameString}</a>
         </li>
     );
