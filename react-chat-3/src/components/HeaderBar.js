@@ -9,19 +9,28 @@ const DEFAULT_USERS = [
 
 export function HeaderBar(props) {
 
+  const currentUser = props.currentUser;
+  const howToChangeUser = props.howToChangeUser;
+
   //event handler
   const handleClick = (event) => {
     const whichUser = event.currentTarget.name //access button, not image
     const selectedUserObj = DEFAULT_USERS.filter((userObj) => userObj.userId === whichUser)[0] || DEFAULT_USERS[0] //null user if not found
 
     console.log(selectedUserObj);
+    howToChangeUser(selectedUserObj);
     //do something with userObj!
   }
 
   //for convenience
   const userButtons = DEFAULT_USERS.map((userObj) => {
+    let classList = "btn user-icon";
+    if(userObj.userId === currentUser.userId){
+      classList += " highlighted"
+    }
+
     return (
-      <button className="btn user-icon" key={userObj.userName} 
+      <button className={classList} key={userObj.userName} 
         name={userObj.userId} onClick={handleClick}
       >
         <img src={userObj.userImg} alt={userObj.userName + " avatar"} />

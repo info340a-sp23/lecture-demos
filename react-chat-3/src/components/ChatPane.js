@@ -1,32 +1,19 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 
 import { ComposeForm } from './ComposeForm.js';
 
-import INITIAL_HISTORY from '../data/chat_log.json'
-
 export function ChatPane(props) {
   const currentChannel = props.currentChannel;
+  const messageArray = props.messageArray;
+  const addMessage = props.addMessageCallback;
+  const currentUser = props.currentUser;
 
-  const [messageStateArray, setMessageStateArray] = useState(INITIAL_HISTORY); 
-
-  //STATE MANAGEMENT: how do we change?
-  const addMessage = function(userObj, messageText, channel) {
-    const newMessage = {
-      "userId": userObj.userId,
-      "userName": userObj.userName,
-      "userImg": userObj.userImg,
-      "text": messageText,
-      "timestamp": Date.now(),
-      "channel": channel
-    }
-    const newArray = [...messageStateArray, newMessage];
-    setMessageStateArray(newArray); //update state & re-render
-  }
 
   //RENDERING: what do we look like?
 
   //data: an array of messages [{}]
-  const messageObjArray = messageStateArray
+  const messageObjArray = messageArray
     .sort((m1, m2) => m2.timestamp - m1.timestamp); //reverse chron order
 
   const channelMessages = messageObjArray.filter((msgObj) => {
@@ -42,18 +29,24 @@ export function ChatPane(props) {
       return elem; //put it in the new array!
   });
 
+  const messageToShow = (messageItemArray.length === 0 && 
+  <p>No messages found</p>)
+
   return (
     <> {/* fake div */}
       <div className="scrollable-pane pt-2 my-2">
-          {/* conditional rendering */}
-          { messageItemArray.length === 0 && 
-            <p>No messages found</p>
-          }
+        {/* conditional rendering */}
+        { messageItemArray.length === 0 && 
+          <p>No messages found</p> 
+        }
 
-          {messageItemArray}
-        </div>
+        {messageItemArray}
+      </div>
 
-        <ComposeForm currentChannel={currentChannel} howToAddAMessage={addMessage} />
+      <ComposeForm 
+        currentUser={currentUser}
+        currentChannel={currentChannel}
+        howToAddAMessage={addMessage} />
     </>
   )
 }

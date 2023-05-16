@@ -2,7 +2,8 @@ import React from 'react';
 
 export function ChannelList(props) {
 
-  const {channelNames, currentChannel} = props;
+  const {channelNames, currentChannel, channelCounts} = props;
+
 
   const liArray = channelNames.map((channelNameString) => {
     let classList = "px-2";
@@ -12,7 +13,7 @@ export function ChannelList(props) {
 
     return (
       <li className={classList} key={channelNameString}>
-        <a href={"/"+channelNameString}>{channelNameString}</a>
+        <a href={"/"+channelNameString}>{channelNameString} ({channelCounts[channelNameString] || 0})</a>
       </li>
     );
   })

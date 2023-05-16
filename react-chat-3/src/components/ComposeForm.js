@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 export function ComposeForm(props) {
   const currentChannel = props.currentChannel;
   const addMessageFunction = props.howToAddAMessage;
+  const currentUser = props.currentUser;
 
   const [inputtedText, setInputtedText] = useState('');
 
   //submission
   const handleClick = (event) => {
-    const userObj = { userId: "parrot", userName: "Parrot", userImg: "/img/Penguin.png" }
+    // const userObj = { userId: "parrot", userName: "Parrot", userImg: "/img/Penguin.png" }
 
-    addMessageFunction(userObj, inputtedText, currentChannel);   
+    addMessageFunction(currentUser, inputtedText, currentChannel);   
     setInputtedText('');
   }
 
@@ -23,6 +24,7 @@ export function ComposeForm(props) {
   return (
     <form className="my-2">
       <div className="input-group">
+        <img src={currentUser.userImg} alt={currentUser.userName + " avatar"} />
         <textarea 
           onChange={handleChange}
           value={inputtedText}
