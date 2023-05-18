@@ -3,7 +3,7 @@ import { ComposeForm } from './ComposeForm';
 
 export function ChatPane(props) {
 
-  const currentChannel = "general" //hard code for the moment
+  const currentChannel = props.currentChannel //hard code for the moment
   const messageObjArray = props.messageArray;
   const howToAddAMessage = props.howToAddAMessage;
   const currentUser = props.currentUser;

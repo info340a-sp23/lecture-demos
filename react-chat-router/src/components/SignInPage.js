@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import DEFAULT_USERS from '../data/users.json';
 
 export default function SignInPage(props) {
@@ -16,15 +18,16 @@ export default function SignInPage(props) {
 
   //convenience
   const userButtons = DEFAULT_USERS.map((userObj) => {
-    // if(userObj.userId === currentUser.userId){
-    //   return null; //don't include!
-    // }
+    if(userObj.userId === currentUser.userId){
+      return null; //don't include!
+    }
     return (
-      <button className="user-icon btn" key={userObj.userName} 
+      <Dropdown.Item className="user-icon btn" key={userObj.userName} 
         name={userObj.userId} onClick={handleClick}
       >
         <img src={userObj.userImg} alt={userObj.userName + " avatar"} />
-      </button>
+        {userObj.userName}
+      </Dropdown.Item>
     )
   })
 
@@ -32,9 +35,16 @@ export default function SignInPage(props) {
     <div className="card bg-light">
       <div className="container card-body">
         <p className="lead">Pick a user:</p>
-        <div>
-          {userButtons}
-        </div>
+        <Dropdown>
+          <Dropdown.Toggle variant="light">
+            <img src={currentUser.userImg} alt={currentUser.userName + " avatar"} />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {userButtons}
+          </Dropdown.Menu>                 
+        </Dropdown>
+        {/* <div>
+        </div> */}
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import { useParams } from 'react-router-dom';
+
 import { ChannelList } from './ChannelList.js';
 import { ChatPane } from './ChatPane.js';
 
@@ -10,6 +12,9 @@ export default function ChatPage(props) {
   const howToAddAMessage = props.howToAddAMessage;
 
   const channelNames = ["general", "social", "random", "birds", "dank-memes"];
+
+  const paramsObj = useParams();
+  const whichChannel = paramsObj.whichChannel;
 
   const channelCounts = _.countBy(messageObjArray, 'channel')
 
@@ -23,6 +28,7 @@ export default function ChatPage(props) {
           currentUser={currentUser}
           messageArray={messageObjArray}
           howToAddAMessage={howToAddAMessage}
+          currentChannel={whichChannel}
         />
       </div>
     </div>
