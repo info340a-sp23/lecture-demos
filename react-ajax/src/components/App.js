@@ -9,9 +9,32 @@ const EXAMPLE_DATA = [
 
 
 function App(props) {
-  const [stateData, setStateData] = useState(EXAMPLE_DATA);
+  const [stateData, setStateData] = useState([]);
+  console.log("rendering with", stateData);
   //control form
   const [queryInput, setQueryInput] = useState('');
+
+  useEffect(() => {
+    console.log("effect hook");
+    const URL = "http://api.github.com/search/repositories?q="+"bootstrap"+"&sort=stars";
+
+    fetch(URL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setStateData(data.items);
+      })
+      .catch((error) => {
+        console.log("caught an error!")
+        console.log(error);
+      })  
+
+
+  }, []);
+
+
 
   const handleChange = (event) => {
     setQueryInput(event.target.value);
@@ -21,9 +44,24 @@ function App(props) {
     event.preventDefault();
 
     //do something with form input!
+    const URL = "http://api.github.com/search/repositories?q="+queryInput+"&sort=stars";
 
+    fetch(URL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setStateData(data.items);
+      })
+      .catch((error) => {
+        console.log("caught an error!")
+        console.log(error);
+      })  
   }
 
+
+  
 
   //render the data
   const dataElemArray = stateData.map((repo) => {
@@ -36,7 +74,7 @@ function App(props) {
     <div className="container">
       <header><h1>AJAX Demo</h1></header> 
 
-      <form method="GET" action="https://api.github.com/search/repositories">
+      <form method="GET" action="https://api.github.com/search/repositories" onSubmit={handleSubmit}>
         <input type="text" className="form-control mb-2" 
           name="q"
           placeholder="Search Github for..."
