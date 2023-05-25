@@ -3,6 +3,8 @@ import { ComposeForm } from './ComposeForm';
 
 import { useParams } from 'react-router-dom';
 
+import { getDatabase, ref, set as firebaseSet } from 'firebase/database';
+
 export function ChatPane(props) {
 
   const currentUser = props.currentUser;
@@ -20,9 +22,7 @@ export function ChatPane(props) {
     const messageElemArray = messagesToShow.map((messageObj) => {
       const messageElem = (
         <MessageItem
-          userName={messageObj.userName} 
-          userImg={messageObj.userImg} 
-          text={messageObj.text}
+          messageObj={messageObj}
           key={messageObj.timestamp} />
       );
       return messageElem; //put it in the new array!
@@ -48,14 +48,20 @@ export function ChatPane(props) {
 }
 
 function MessageItem(props) {
-  const userName = props.userName;
-  const userImg = props.userImg;
-  const text = props.text;
+  const userName = props.messageObj.userName;
+  const userImg = props.messageObj.userImg;
+  const text = props.messageObj.text;
 
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = function(event) {
-    setIsLiked(!isLiked);
+    // setIsLiked(!isLiked);
+    console.log("clicked on ", props.messageObj);
+
+    const db = getDatabase();
+    const messageRef = ref(db, "allMessages/"+props.messageObj.firebaseKey);
+    firebaseSet(messageRef, null);
+
   }
 
 
