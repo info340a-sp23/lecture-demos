@@ -1,12 +1,20 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import {getAuth, signOut} from 'firebase/auth';
+
 export function HeaderBar(props) {
   const currentUser = props.currentUser;
 
   const handleSignOut = (event) => {
     console.log("signing out");
+    signOut(getAuth());
   }
+
+  if(props.currentUser === undefined){
+    return <p>Loading...</p>
+  }
+
 
   return (
     <header className="text-light bg-primary px-1 d-flex justify-content-between">

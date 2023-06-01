@@ -22,6 +22,7 @@ export function ChatPane(props) {
       const messageElem = (
         <MessageItem
           messageObj={messageObj}
+          currentUser={currentUser}
           key={messageObj.timestamp} />
       );
       return messageElem; //put it in the new array!
@@ -54,8 +55,8 @@ function MessageItem(props) {
 
   const handleClick = function(event) {
     const db = getDatabase();
-    const messageLikedRef = ref(db, "allMessages/"+props.messageObj.firebaseKey+"/isLiked"); //global liking
-    firebaseSet(messageLikedRef, !isLiked);
+    const messageLikedRef = ref(db, "allMessages/"+props.messageObj.firebaseKey+"/isLiked/"+props.currentUser.uid); //global liking
+    firebaseSet(messageLikedRef, true);
   }
 
   //decide what it looks like

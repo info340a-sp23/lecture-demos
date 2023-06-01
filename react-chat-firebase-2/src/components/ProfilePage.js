@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL  } from 'firebase/storage'
+
+import { getAuth, updateProfile } from 'firebase/auth';
+
 export default function ProfilePage(props) {
   //convenience
   const displayName = props.currentUser.userName;
@@ -12,13 +16,32 @@ export default function ProfilePage(props) {
   const handleChange = (event) => {
     if(event.target.files.length > 0 && event.target.files[0]) {
       const imageFile = event.target.files[0]
+      // console.log(imageFile);
       setImageFile(imageFile);
+      // console.log(URL.createObjectURL(imageFile));
       setImageUrl(URL.createObjectURL(imageFile));
     }
   }
 
   const handleImageUpload = (event) => {
     console.log("Uploading", imageFile);
+
+    const storage = getStorage();
+    const imageRef = storageRef(storage, "userImages/"+props.currentUser.uid+".png");
+    uploadBytes(imageRef, imageFile)
+      .then(() => {
+        return getDownloadURL(imageRef);
+      })
+      .then((downloadUrl) => {
+        console.log(downloadUrl);
+        updateProfile(props.currentUser, 
+          { photoURL: downloadUrl }
+        )
+        //setCurrentUse(updatetheUserObj)
+
+      })
+    
+
   }
 
   return (
